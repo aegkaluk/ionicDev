@@ -5,6 +5,7 @@ import { FileDevPage } from '../file-dev/file-dev';
 import { ScanPage } from '../scan/scan';
 import { HttpPage } from '../http/http';
 import { NetworkPage } from '../network/network';
+import { StoragePage } from '../storage/storage';
 
 @Component({
   selector: 'page-home',
@@ -41,6 +42,11 @@ export class HomePage {
   toNetworkPage(){
     this.navCtrl.push(NetworkPage,{
       data: 'network-para-999'
+   })
+  }
+  toStoragePage(){
+    this.navCtrl.push(StoragePage,{
+      data: 'storage-para-999'
    })
   }
 

@@ -9,7 +9,6 @@ import { FileTransfer } from '@ionic-native/file-transfer';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { HttpModule } from '@angular/http';
 import { Network } from '@ionic-native/network';
-import { NetworkInterface } from '@ionic-native/network-interface';
 
 import { MyproviderProvider } from '../providers/myprovider/myprovider';
 import { MyApp } from './app.component';
@@ -19,6 +18,7 @@ import { FileDevPage } from '../pages/file-dev/file-dev';
 import { ScanPage } from '../pages/scan/scan';
 import { HttpPage } from '../pages/http/http';
 import { NetworkPage } from '../pages/network/network';
+import { StoragePage } from '../pages/storage/storage';
 
 
 @NgModule({
@@ -30,6 +30,7 @@ import { NetworkPage } from '../pages/network/network';
     ScanPage,
     HttpPage,
     NetworkPage,
+    StoragePage,
   ],
   imports: [
     BrowserModule,
@@ -45,6 +46,7 @@ import { NetworkPage } from '../pages/network/network';
     ScanPage,
     HttpPage,
     NetworkPage,
+    StoragePage,
   ],
   providers: [
     StatusBar,
@@ -54,7 +56,6 @@ import { NetworkPage } from '../pages/network/network';
     FileTransfer,
     BarcodeScanner,
     Network,
-    NetworkInterface,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     MyproviderProvider
   ]
