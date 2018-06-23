@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { Http } from '@angular/http';
+//import { NativeStorage } from '@ionic/storage';
 /**
  * Generated class for the StoragePage page.
  *
@@ -34,25 +35,19 @@ export class StoragePage {
     this.nativeStorage.getItem('myObj')
     .then(data => {
       console.log(data)
+      return data;
     },error => console.error(error) );
   }
 
   loadData(){
     console.log("loadData()");
-    let path = 'http://cloud.phuket-it.com/api/vh/vehicle/';
-    let data = {
-      'act':'getType'
-    }
-    this.http.post(path,JSON.stringify(data))
-        .subscribe(res => {
-          let Response = res.json();
-          this.setStorage(Response.objSelect);
-          console.log(Response.objSelect);
-        });   
+    var obj = [{id:'1',name:'item1'},{id:'2',name:'item2'},{id:'3',name:'item3'}];
+    this.setStorage(obj);
   }
   showData(){
     console.log("showData()");
-    this.getStorage();
+    let obj = this.getStorage();
+    console.log("return obj:"+obj[0].name);
   }
 
 
