@@ -33,7 +33,8 @@ export class NetworkPage {
   netSubnet:string;
   
   getNetinfo(){
-      console.log("getNetinfo()");
+      console.log("getNetinfo()"+this.network.type);
+      this.provider.presentToast("getNetinfo()"+this.network.type);
       // watch network for a disconnect
       let disconnectSubscription = this.network.onDisconnect()
             .subscribe(() =>{
