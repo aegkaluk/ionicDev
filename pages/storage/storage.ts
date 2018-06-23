@@ -35,7 +35,6 @@ export class StoragePage {
     this.nativeStorage.getItem('myObj')
     .then(data => {
       console.log(data)
-      return data;
     },error => console.error(error) );
   }
 
@@ -46,8 +45,7 @@ export class StoragePage {
   }
   showData(){
     console.log("showData()");
-    let obj = this.getStorage();
-    console.log("return obj:",obj);
+    this.getStorage();
   }
 
 
