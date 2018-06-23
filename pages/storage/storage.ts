@@ -47,7 +47,7 @@ export class StoragePage {
   showData(){
     console.log("showData()");
     let obj = this.getStorage();
-    console.log("return obj:"+obj[0].name);
+    console.log("return obj:",obj);
   }
 
 
