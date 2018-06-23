@@ -4,6 +4,7 @@ import { CamPage } from '../cam/cam';
 import { FileDevPage } from '../file-dev/file-dev';
 import { ScanPage } from '../scan/scan';
 import { HttpPage } from '../http/http';
+import { NetworkPage } from '../network/network';
 
 @Component({
   selector: 'page-home',
@@ -35,6 +36,11 @@ export class HomePage {
   toHttpPage(){
     this.navCtrl.push(HttpPage,{
       data: 'http-para-999'
+   })
+  }
+  toNetworkPage(){
+    this.navCtrl.push(NetworkPage,{
+      data: 'network-para-999'
    })
   }
 

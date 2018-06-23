@@ -28,21 +28,24 @@ export class HttpPage {
   apiURL = this.provider.apiURL+"/http/";
 
   sendData(){
-    console.log("sendData()");
+    if(this.inputName!=undefined){
+      console.log("sendData()");
 
-    let data = {
-      'act':'post',
-      'data': this.inputName
-    }
-    
-    this.http.post(this.apiURL,JSON.stringify(data))
-        .subscribe(res => {
-          let Response = res.json();
-          this.provider.presentToast(Response.msg);
-          console.log(Response.msg);
-        });   
+      let data = {
+        'act':'post',
+        'data': this.inputName
+      }
+      
+      this.http.post(this.apiURL,JSON.stringify(data))
+          .subscribe(res => {
+            let Response = res.json();
+            this.provider.presentToast(Response.msg);
+            console.log(Response.msg);
+          });   
           
-
+    }else{
+      this.provider.presentToast("Enter data?");
+    }
   }
 
 
