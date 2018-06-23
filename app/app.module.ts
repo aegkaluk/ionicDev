@@ -9,6 +9,7 @@ import { FileTransfer } from '@ionic-native/file-transfer';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { HttpModule } from '@angular/http';
 import { Network } from '@ionic-native/network';
+import { NativeStorage } from '@ionic-native/native-storage';
 
 import { MyproviderProvider } from '../providers/myprovider/myprovider';
 import { MyApp } from './app.component';
@@ -56,6 +57,7 @@ import { StoragePage } from '../pages/storage/storage';
     FileTransfer,
     BarcodeScanner,
     Network,
+    NativeStorage,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     MyproviderProvider
   ]
