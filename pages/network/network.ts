@@ -25,6 +25,9 @@ export class NetworkPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad NetworkPage');
   }
+  ionViewDidLeave(){
+    console.log('ionViewDidLeave NetworkPage');
+  }
   netType:string;
   netIP:string;
   netSubnet:string;
@@ -32,15 +35,28 @@ export class NetworkPage {
   getNetinfo(){
       console.log("getNetinfo()");
       // watch network for a disconnect
-      let disconnectSubscription = this.network.onDisconnect().subscribe(()=>{
-        console.log('network was disconnected :-(');
-      
+      let disconnectSubscription = this.network.onDisconnect()
+            .subscribe(() =>{
+            this.provider.presentToast('Disconnection Detected. :-(');
       });
+
       //stop disconnect watch
-      disconnectSubscription.unsubscribe();
-      
-      let connectSubscription = this.network.onConnect().subscribe(()=>{
+      //disconnectSubscription.unsubscribe();
+
+      let connectSubscription = this.network.onConnect()
+          .subscribe(() => {              
+              this.provider.presentToast('Connection Detected.');
+              setTimeout(() => {
+                if (this.network.type === 'wifi') {
+                  console.log('we got a wifi connection, woohoo!');
+                }
+              }, 3000);
+      });
+
+
+      /*let connectSubscription = this.network.onConnect().subscribe(()=>{
           console.log('network connected! - '+this.network.type);
+          this.provider.presentToast('network connected:'+this.network.type);
 
           this.netType = this.network.type;
           if(this.network.type == 'wifi'){
@@ -61,10 +77,11 @@ export class NetworkPage {
 
           }
 
-      })      
+      })  */    
+      
       // stop connect watch
-      connectSubscription.unsubscribe();
+      //connectSubscription.unsubscribe();
 
-  }
+  }  
 
 }
