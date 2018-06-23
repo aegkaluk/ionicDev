@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Network Dev 99</ion-title>
+    <ion-title>Network Dev</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,7 +15,17 @@
 
 <ion-content padding>
   <ion-item>
-    <ion-label>Network Status 99</ion-label>
+    <b>Network Status</b>
+  </ion-item>  
+  <ion-item>
+    <ion-input type="text" placeholder="Network Type" [(ngModel)]="netType"></ion-input>
   </ion-item>
+  <ion-item>
+    <ion-input type="text" placeholder="Network IP" [(ngModel)]="netIP"></ion-input>  
+  </ion-item>
+  <ion-item>
+    <ion-input type="text" placeholder="Network Subnet" [(ngModel)]="netSubnet"></ion-input>
+  </ion-item>
+  
 
 </ion-content>
