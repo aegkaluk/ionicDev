@@ -10,7 +10,7 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { HttpModule } from '@angular/http';
 import { Network } from '@ionic-native/network';
 import { NativeStorage } from '@ionic-native/native-storage';
-import { ZBar } from '@ionic-native/zbar';
+//import { ZBar } from '@ionic-native/zbar';
 
 import { MyproviderProvider } from '../providers/myprovider/myprovider';
 import { MyApp } from './app.component';
@@ -21,7 +21,7 @@ import { ScanPage } from '../pages/scan/scan';
 import { HttpPage } from '../pages/http/http';
 import { NetworkPage } from '../pages/network/network';
 import { StoragePage } from '../pages/storage/storage';
-import { ZbarPage } from '../pages/zbar/zbar';
+//import { ZbarPage } from '../pages/zbar/zbar';
 
 
 @NgModule({
@@ -34,7 +34,7 @@ import { ZbarPage } from '../pages/zbar/zbar';
     HttpPage,
     NetworkPage,
     StoragePage,
-    ZbarPage,
+    //ZbarPage,
   ],
   imports: [
     BrowserModule,
@@ -51,7 +51,7 @@ import { ZbarPage } from '../pages/zbar/zbar';
     HttpPage,
     NetworkPage,
     StoragePage,
-    ZbarPage,
+    //ZbarPage,
   ],
   providers: [
     StatusBar,
@@ -62,7 +62,7 @@ import { ZbarPage } from '../pages/zbar/zbar';
     BarcodeScanner,
     Network,
     NativeStorage,
-    ZBar,
+    //ZBar,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     MyproviderProvider
   ]

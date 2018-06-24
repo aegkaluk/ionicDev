@@ -6,7 +6,6 @@ import { ScanPage } from '../scan/scan';
 import { HttpPage } from '../http/http';
 import { NetworkPage } from '../network/network';
 import { StoragePage } from '../storage/storage';
-import { ZbarPage } from '../zbar/zbar';
 
 @Component({
   selector: 'page-home',
@@ -50,10 +49,6 @@ export class HomePage {
       data: 'storage-para-999'
    })
   }
-  toZbarPage(){
-    this.navCtrl.push(ZbarPage,{
-      data: 'zbar-para-999'
-   })
-  }
+
 
 }
