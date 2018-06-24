@@ -67,6 +67,7 @@ export class StoragePage {
     this.nativeStorage.remove('myObj')
     .then(()=>{
       console.log("removed storage");
+      this.dataStorage = [];
       this.provider.presentToast("Removed Stored");
     })
   }
