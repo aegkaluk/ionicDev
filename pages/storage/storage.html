@@ -15,13 +15,25 @@
 
 <ion-content padding>
   <ion-item>
-    <ion-input type="text" placeholder="Result" ></ion-input>
+    <ion-list>
+      <ion-item *ngfor="let d of dataStorage">
+             {{d.name}}
+      </ion-item>
+  </ion-list>
+  
+  </ion-item>  
+  <ion-item>
+    <ion-select placeholder="Select" [(ngModel)]="selected">
+      <ion-option *ngFor="let item of dataStorage" value="{{item.id}}">{{item.name}}</ion-option>
+  </ion-select>
   </ion-item>
   <ion-item>
-    <button ion-button (click)="loadData()">Load Data</button>
+    <button ion-button (click)="setData()">Set Data</button>
   </ion-item>
   <ion-item>
-      <button ion-button (click)="showData()">Show Data</button>
+      <button ion-button (click)="getData()">Get Data</button>
   </ion-item>
-
+  <ion-item>
+    <button ion-button (click)="clearData()">Clear Data</button>
+</ion-item>
 </ion-content>
