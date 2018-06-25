@@ -6,6 +6,7 @@ import { ScanPage } from '../scan/scan';
 import { HttpPage } from '../http/http';
 import { NetworkPage } from '../network/network';
 import { StoragePage } from '../storage/storage';
+import { CropPage } from '../crop/crop';
 
 @Component({
   selector: 'page-home',
@@ -47,6 +48,11 @@ export class HomePage {
   toStoragePage(){
     this.navCtrl.push(StoragePage,{
       data: 'storage-para-999'
+   })
+  }
+  toCropPage(){
+    this.navCtrl.push(CropPage,{
+      data: 'crop-para-999'
    })
   }
 
