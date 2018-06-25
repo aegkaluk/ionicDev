@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Network } from '@ionic-native/network';
-import { NetworkInterface } from '@ionic-native/network-interface';
 import { MyproviderProvider } from '../../providers/myprovider/myprovider';
 
 
@@ -19,70 +18,40 @@ import { MyproviderProvider } from '../../providers/myprovider/myprovider';
 })
 export class NetworkPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private network:Network,private networkInterface:NetworkInterface,private provider:MyproviderProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,private network:Network,private provider:MyproviderProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad NetworkPage');
+    this.handleNetwork();
   }
   ionViewDidLeave(){
     console.log('ionViewDidLeave NetworkPage');
+    this.handleNetworkClose();
   }
-  netType:string;
-  netIP:string;
-  netSubnet:string;
-  
-  getNetinfo(){
-      console.log("getNetinfo()"+this.network.type);
-      this.provider.presentToast("getNetinfo()"+this.network.type);
-      // watch network for a disconnect
-      let disconnectSubscription = this.network.onDisconnect()
+  netStat:string;
+  disconnectSubscription:any;
+  connectSubscription:any;  
+
+  handleNetwork(){
+      this.provider.presentToast("handleNetwork():started");
+
+      this.disconnectSubscription = this.network.onDisconnect()
             .subscribe(() =>{
-            this.provider.presentToast('Disconnection Detected. :-(');
+              this.provider.presentToast('Disconnection Detected. :-(');
+              this.netStat = "Disconnected ?";
       });
 
-      //stop disconnect watch
-      //disconnectSubscription.unsubscribe();
-
-      let connectSubscription = this.network.onConnect()
+      this.connectSubscription = this.network.onConnect()
           .subscribe(() => {              
-              this.provider.presentToast('Connection Detected.');
-              setTimeout(() => {
-                if (this.network.type === 'wifi') {
-                  console.log('we got a wifi connection, woohoo!');
-                }
-              }, 3000);
+              this.provider.presentToast('Connection Detected -> '+this.network.type);
+              this.netStat = "Connected !";
       });
+  }
 
-
-      /*let connectSubscription = this.network.onConnect().subscribe(()=>{
-          console.log('network connected! - '+this.network.type);
-          this.provider.presentToast('network connected:'+this.network.type);
-
-          this.netType = this.network.type;
-          if(this.network.type == 'wifi'){
-              this.networkInterface.getWiFiIPAddress().then(result => {
-                console.log(result);
-                this.netIP = result['ip'];
-                this.netSubnet = result['subnet'];
-                this.provider.presentToast('ip:'+result['ip']+' subnet:'+result['subnet']);
-              });
-              console.log('connected by wifi');            
-          }else{
-              this.networkInterface.getCarrierIPAddress().then(result=>{
-                  console.log(result);
-                  this.netIP = result['ip'];
-                  this.netSubnet = result['subnet'];
-                  this.provider.presentToast('ip:'+result['ip']+' subnet:'+result['subnet']);
-              })
-
-          }
-
-      })  */    
-      
-      // stop connect watch
-      //connectSubscription.unsubscribe();
-
-  }  
+  handleNetworkClose(){
+    this.connectSubscription.unsubscribe();
+    this.disconnectSubscription.unsubscribe();
+  }
 
 }
