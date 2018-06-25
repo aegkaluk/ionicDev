@@ -38,14 +38,17 @@ export class CamPage {
       encodingType: this.camera.EncodingType.JPEG,
       mediaType:this.camera.MediaType.PICTURE
     }
-    this.camera.getPicture(options).then((imageData)=>{
-      //this.image = 'data:image/jpeg;base64,'+imageData;
-      this.imageURI = imageData; //use options destinationType: this.camera.DestinationType.FILE_URI,
-    },(err)=>{
-      console.log(err);
-    })
+    this.camera.getPicture(options)
+        .then((imageData)=>{
+          //this.image = 'data:image/jpeg;base64,'+imageData;
+          this.imageURI = imageData; //use options destinationType: this.camera.DestinationType.FILE_URI,
+        })
+        .catch((e) => {
+          console.log(e)
+          this.provider.presentToast(e);
+        });   
    
-  }
+  } 
 
   uploadFile(){
       if(this.imageURI!=undefined){
@@ -71,7 +74,7 @@ export class CamPage {
         fileTransfer.upload(this.imageURI,pathUpload,options)
             .then((data) => {
                 console.log(data+" Uploaded Successfully");       
-                this.provider.presentToast("Response msg: "+data['msg']);     
+                this.provider.presentToast(data);     
                 //this.imageUploaded = pathUpload+"/images/"+fileName;
                 loader.dismiss();
             },(err) => {

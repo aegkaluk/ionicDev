@@ -19,15 +19,13 @@
       <p>api:{{apiURL}}</p>
   </ion-item>
   <ion-item>
-    <p>{{imageURI}}</p>
+      <h4>Image Preview</h4>
+      <img src="{{imageURI}}" *ngIf="imageURI" alt='Ionic File' width="300">
+    </ion-item>
+  <ion-item>
     <button ion-button (click)="getImage()">Get Image</button> <button ion-button (click)="uploadFile()">Upload</button>
-  </ion-item>
-  <ion-item>
-    <h4>Image Preview</h4>
-    <img src="{{imageFileName}}" *ngIf="imageFileName" alt='Ionic File' width="300">
-  </ion-item>
-  <ion-item>
-    
+  </ion-item>  
+  <ion-item>    
   </ion-item>
 
 </ion-content>
