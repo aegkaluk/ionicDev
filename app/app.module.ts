@@ -10,6 +10,7 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { HttpModule } from '@angular/http';
 import { Network } from '@ionic-native/network';
 import { NativeStorage } from '@ionic-native/native-storage';
+import { Crop } from '@ionic-native/crop';
 
 import { MyproviderProvider } from '../providers/myprovider/myprovider';
 import { MyApp } from './app.component';
@@ -20,6 +21,7 @@ import { ScanPage } from '../pages/scan/scan';
 import { HttpPage } from '../pages/http/http';
 import { NetworkPage } from '../pages/network/network';
 import { StoragePage } from '../pages/storage/storage';
+import { CropPage } from '../pages/crop/crop';
 
 
 @NgModule({
@@ -32,6 +34,7 @@ import { StoragePage } from '../pages/storage/storage';
     HttpPage,
     NetworkPage,
     StoragePage,
+    CropPage,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +51,7 @@ import { StoragePage } from '../pages/storage/storage';
     HttpPage,
     NetworkPage,
     StoragePage,
+    CropPage,
   ],
   providers: [
     StatusBar,
@@ -58,6 +62,7 @@ import { StoragePage } from '../pages/storage/storage';
     BarcodeScanner,
     Network,
     NativeStorage,
+    Crop,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     MyproviderProvider
   ]

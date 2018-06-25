@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { Http } from '@angular/http';
 import { MyproviderProvider } from '../../providers/myprovider/myprovider';
+import { Platform } from 'ionic-angular';
 //import { NativeStorage } from '@ionic/storage';
 /**
  * Generated class for the StoragePage page.
@@ -18,7 +19,7 @@ import { MyproviderProvider } from '../../providers/myprovider/myprovider';
 })
 export class StoragePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private nativeStorage:NativeStorage,public http:Http,private provider:MyproviderProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,private nativeStorage:NativeStorage,public http:Http,private provider:MyproviderProvider,private platform:Platform) {
   }
 
   dataStorage:any;
@@ -63,13 +64,15 @@ export class StoragePage {
     this.getStorage();
   }
   clearData(){
-    //this.nativeStorage.clear();
-    this.nativeStorage.remove('myObj')
-    .then(()=>{
-      console.log("removed storage");
-      this.dataStorage = [];
-      this.provider.presentToast("Removed Stored");
-    })
+      if (this.platform.is('cordova')) {
+            //this.nativeStorage.clear();
+            this.nativeStorage.remove('myObj')
+            .then(()=>{
+              console.log("removed storage");
+              this.dataStorage = [];
+              this.provider.presentToast("Removed Stored");
+            })
+      }     
   }
 
 
