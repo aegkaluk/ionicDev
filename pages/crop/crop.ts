@@ -58,15 +58,17 @@ export class CropPage {
 
   onTakePicture(): Promise<any>  {
     const options: CameraOptions = {
-      quality: 50,
+      quality: 50,      
+      saveToPhotoAlbum:true,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType:this.camera.MediaType.PICTURE
     }
     return this.camera.getPicture(options)
         .then((imageData)=>{
-          let image = 'data:image/jpeg;base64,'+imageData;
-          return this.crop.crop(image, { quality: 100, targetWidth: -1, targetHeight: -1 });
+          //let image = 'data:image/jpeg;base64,'+imageData;
+          this.provider.presentToast(imageData);
+          return this.crop.crop(imageData, { quality: 100, targetWidth: -1, targetHeight: -1 });
         })
         .then((path) => {
           console.log('Cropped Image Path!: ' + path);
