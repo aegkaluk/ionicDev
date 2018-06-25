@@ -36,4 +36,6 @@ export class MyproviderProvider {
       newFileName=n+".jpg";
       return newFileName;
     }
+    
+
 }

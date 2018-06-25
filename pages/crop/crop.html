@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>crop</ion-title>
+    <ion-title>Crop Image Dev</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -18,15 +18,18 @@
     <b>Crop image</b>
   </ion-item>
   <ion-item>
-      <h4>Image Preview</h4>
-      <img src="{{imageFileName}}" *ngIf="imageFileName" alt='Ionic File' width="300">
+    <h4>Image Croped</h4>
+    <img src="{{imageURICrop}}" *ngIf="imageURICrop" alt='Croped File' width="300">
+  </ion-item>
+  <ion-item>
+      <h4>Image Uploaded</h4>
+      <img src="{{imageURIuploaded}}" *ngIf="imageURIuploaded" alt='Uploaded File' width="300">
     </ion-item>
-    <ion-item>
-        <h4>Image Croped</h4>
-        <img src="{{imageFileNameCrop}}" *ngIf="imageFileNameCrop" alt='Ionic File' width="300">
-      </ion-item>
   <ion-item>
     <button ion-button (click)="selectImage()">Select Image</button>
+    <button ion-button (click)="onTakePicture()">Take Photo</button>
   </ion-item>
-
+  <ion-item>
+    <button ion-button (click)="uploadFile()">Upload</button>
+  </ion-item>
 </ion-content>
