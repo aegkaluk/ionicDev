@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
-import { DomSanitizer } from '@angular/platform-browser';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 import { MyproviderProvider } from '../../providers/myprovider/myprovider';
@@ -19,26 +18,29 @@ import { MyproviderProvider } from '../../providers/myprovider/myprovider';
 })
 export class CamPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private camera : Camera,private domSanitizer:DomSanitizer,private loadingCtrl:LoadingController,private transfer: FileTransfer,private provider:MyproviderProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,private camera : Camera,private loadingCtrl:LoadingController,private transfer: FileTransfer,private provider:MyproviderProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CamPage');
-    console.log(this.image);
   }
 
-  private image: string;
   apiURL = this.provider.apiURL;
+  imageURI:any;
 
   onTakePicture(){
     const options: CameraOptions = {
       quality: 50,
-      destinationType: this.camera.DestinationType.DATA_URL,
+      saveToPhotoAlbum:true,
+      allowEdit: true,
+      //destinationType: this.camera.DestinationType.DATA_URL,
+      destinationType: this.camera.DestinationType.FILE_URI,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType:this.camera.MediaType.PICTURE
     }
     this.camera.getPicture(options).then((imageData)=>{
-      this.image = 'data:image/jpeg;base64,'+imageData;
+      //this.image = 'data:image/jpeg;base64,'+imageData;
+      this.imageURI = imageData; //use options destinationType: this.camera.DestinationType.FILE_URI,
     },(err)=>{
       console.log(err);
     })
@@ -46,7 +48,7 @@ export class CamPage {
   }
 
   uploadFile(){
-      if(this.image!=undefined){
+      if(this.imageURI!=undefined){
         let loader = this.loadingCtrl.create({
           content:"Uploading.."
         })
@@ -66,11 +68,11 @@ export class CamPage {
 
         let pathUpload = this.apiURL+"/upload/";
         
-        fileTransfer.upload(this.image,pathUpload,options)
+        fileTransfer.upload(this.imageURI,pathUpload,options)
             .then((data) => {
                 console.log(data+" Uploaded Successfully");       
                 this.provider.presentToast("Response msg: "+data['msg']);     
-                //this.image = pathUpload+"/images/"+fileName;
+                //this.imageUploaded = pathUpload+"/images/"+fileName;
                 loader.dismiss();
             },(err) => {
                 console.log(err);

@@ -30,7 +30,8 @@ export class FileDevPage {
    
   getImage(){
     const options : CameraOptions = {
-      quality: 50,
+      quality: 50,      
+      allowEdit: true,
       destinationType: this.camera.DestinationType.FILE_URI,
       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY
     }

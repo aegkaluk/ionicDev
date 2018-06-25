@@ -34,6 +34,7 @@ export class CropPage {
   selectImage(): Promise<any> {
     const options : CameraOptions = {
       quality: 50,
+      //allowEdit: true,
       destinationType: this.camera.DestinationType.FILE_URI,
       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY
     }
@@ -60,14 +61,15 @@ export class CropPage {
     const options: CameraOptions = {
       quality: 50,      
       saveToPhotoAlbum:true,
-      destinationType: this.camera.DestinationType.DATA_URL,
+      //allowEdit: true,
+      //destinationType: this.camera.DestinationType.DATA_URL,
+      destinationType: this.camera.DestinationType.FILE_URI,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType:this.camera.MediaType.PICTURE
     }
     return this.camera.getPicture(options)
         .then((imageData)=>{
           //let image = 'data:image/jpeg;base64,'+imageData;
-          this.provider.presentToast(imageData);
           return this.crop.crop(imageData, { quality: 100, targetWidth: -1, targetHeight: -1 });
         })
         .then((path) => {

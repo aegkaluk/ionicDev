@@ -16,15 +16,13 @@
 <ion-content padding>
     <ion-card>
         <ion-card-content>
-          <p>Camera take picture and upload to {{apiURL}}</p>
+          <p>Camera with allowEdit</p>
+          <p>api:{{apiURL}}</p>
         <button ion-button icon-right (click)="onTakePicture()">
           Take Picture <ion-icon name="camera"></ion-icon>
-        </button>
+        </button>        
         <button ion-button (click)="uploadFile()">Upload</button>
-
-        <img *ngIf="image"
-          [src]="domSanitizer.bypassSecurityTrustUrl(image)" />
-    
+        <img src="{{imageURI}}" *ngIf="imageURI" alt='Ionic File' width="300">   
       </ion-card-content>
     </ion-card>
 </ion-content>
